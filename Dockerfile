@@ -21,3 +21,11 @@ USER node
 EXPOSE 1337
 
 CMD ["node", "lib/server/server.js"]
+FROM node:20-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+ENV NODE_ENV=production
+EXPOSE 1337
+CMD ["node", "server.js"]
